@@ -26,8 +26,10 @@ class audio:
                 file_path = f"{name}.wav"
                 self.file_path=file_path
             else:
-                raise Exception("Input valid audio file format to audio.format_audio(filetype=...)")
+                print("Sorry audio format not accepted")
+                raise Exception("Input valid audio file format to audio.format_audio(file_path=...)")
 
-
+"""
 clip = audio(file_path="C:/Users/willi/OneDrive - Fulton County Schools/Research Projects/Programming Projets/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")
 clip.format_audio()
+"""
