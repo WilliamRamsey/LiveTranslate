@@ -2,6 +2,25 @@ from audio import *
 from get_audio import *
 import speech_recognition as sr
 
+def text_from_wav_bytes(wav_bytes, lang):
+    detection = sr.AudioFile(wav_bytes)
+    r = sr.Recognizer()
+
+    with detection as source:
+        output = r.record(source)
+        return r.recognize_google(output, language=f'{lang}-in')
+
+def text_from_wav_file(path, lang):
+    r = sr.Recognizer()
+
+    with path as source:
+        span_audio = r.record(source)
+        return r.recognize_google(span_audio, language=f"{lang}-in")
+
+
+
+
+
 # Returns pydub audiosegment
 input_source = audio_from_local("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")
 # Initialized audio class
