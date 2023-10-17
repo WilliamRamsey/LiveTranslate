@@ -12,5 +12,8 @@ class Translator:
     def translate_audio(self, audio_in: object):
         pass
 
+
+"""
 output = Translator(lang_in="en", lang_out="es").translate_text("Hello World")
 print(output)
+"""

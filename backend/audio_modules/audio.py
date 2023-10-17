@@ -1,35 +1,66 @@
-from pydub import AudioSegment
-import speech_recognition as sr
 
-# Class holding any audio files to be transcribed or translated
-# sound = pydub sound object, there mainly for internal development (optional)
-# file_path = 
-# lang = 2 letter abreviation for origional language of the clip
+
+def format_audio_file(path):
+    pass
+
 
 class audio:
-    def __init__(self, sound=None, file_path=None, lang=None) -> None:
-        self.sound = sound
-        self.file_path = file_path
+    def __init__(self, id = None, lang = None, path = None, local_addr = None, remote_addr = None) -> None:
+        self.id = id
         self.lang = lang
+        self.path = path
+        self.local_addr = local_addr
+        self.remote_addr = remote_addr
 
-    def __call__(self):
-        return sr.AudioFile(self.file_path)
-    
-    def format_audio(self):
-            filetype = self.file_path.split(".")[-1]
-            name = self.file_path.split(".")[0]
+        # If id is specified:
+        # For calling data from database
+        if self.id is not None:
+            # Adds all the known info in the class to pysondb
+            # Populates class from pyson db
+            # Breaks and runs the other stuff
+            pass
+        
+        # if path is specified ()
+        if path is not None and lang is not None:
+            pass
 
-            if filetype == "mp3":
-                sound = AudioSegment.from_mp3(self.file_path)
-                self.sound = sound
-                sound.export(f"{name}.wav", format="wav")
-                file_path = f"{name}.wav"
-                self.file_path=file_path
+        # If remote address is specified
+        elif self.remote_addr is not None:
+            # Runs function to pull audio from canvas
+
+            # Formats audio as .wav and saves to database
+            # Updates path variable and pysondb
+            
+            # if there is a language specified
+            if self.lang is not None:
+                # update pysondb with lang
+                pass
+            
+            # if no language specified
             else:
-                print("Sorry audio format not accepted")
-                raise Exception("Input valid audio file format to audio.format_audio(file_path=...)")
+                # sets lang to auto
+                # self.lang = "auto"
+                pass
+            pass
+        
+        # if local filepath specified
+        elif self.local_addr is not None:
+            # Formats audio as .wav and saves to database
+            # Updates path variable and pyson db
 
-"""
-clip = audio(file_path="C:/Users/willi/OneDrive - Fulton County Schools/Research Projects/Programming Projets/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")
-clip.format_audio()
-"""
+            if self.lang is not None:
+                # update pysondb with lang
+                pass
+            
+            # if no language specified
+            else:
+                # sets lang to auto
+                # self.lang = "auto"
+                pass
+            pass
+
+        else:
+            raise Exception("Please specify an id, local_address, path, or remote_address")
+        
+
+        
