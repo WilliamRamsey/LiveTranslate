@@ -21,7 +21,7 @@ class audio:
         # Eats .wav bytes and shits out soundreconition audio file object
         self.sr_sound = sr.AudioFile(wav_buffer)
         # Closes buffer to prevent ram blackwhole.
-        wav_buffer.close()
+        # wav_buffer.close()
     
     def transcribe(self):
         # If to_sr hasn't already been run
@@ -33,6 +33,10 @@ class audio:
             output = r.record(source)
             return r.recognize_google(output, language=f'{self.lang}-in')
         
+    def to_wav_bytes(self):
+        wav_buffer = io.BytesIO()
+        self.sound.export(wav_buffer, format="wav")
+        return wav_buffer
 
 """
 input_source = audio_from_local("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")

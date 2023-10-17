@@ -27,7 +27,7 @@ input_source = audio_from_local("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/S
 audio_sample = audio(sound=input_source)
 audio_bytes = audio_sample.to_wav_bytes()
 detection = sr.AudioFile(audio_bytes)
-
+    
 r = sr.Recognizer()
 with detection as source:
     output = r.record(source)
