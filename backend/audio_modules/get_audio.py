@@ -1,8 +1,11 @@
 from pydub import AudioSegment
+from pydub.playback import play
+
 
 # Gets audio from local file and returns pydub AudioSegment object
 def audio_from_local(path):
     filetype = path.split(".")[-1]
+
     if filetype == "mp3":
         sound = AudioSegment.from_mp3(path)
         return sound
@@ -18,3 +21,8 @@ def audio_from_local(path):
 # Gets audio from remote address and returs pydub AudioSegment object
 def audio_from_remote(url):
     pass
+
+"""
+thing = audio_from_local("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")
+thing.export("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.wav", format="wav")
+"""
