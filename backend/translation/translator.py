@@ -1,7 +1,7 @@
 from deep_translator import GoogleTranslator
 from audio_modules import *
 
-class Translator:
+class translator:
     def __init__(self, lang_in: str, lang_out: str) -> None:
         self.lang_in = lang_in
         self.lang_out = lang_out
@@ -12,5 +12,8 @@ class Translator:
     def translate_audio(self, audio_in: object):
         pass
 
+
+"""
 output = Translator(lang_in="en", lang_out="es").translate_text("Hello World")
 print(output)
+"""
