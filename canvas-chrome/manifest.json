@@ -2,7 +2,16 @@
     "manifest_version": 3,
     "name": "Virtually Free",
     "version": "1.0",
-    "description": "Transcribe spanish audio on canvas assignments",
+    "description": "Tools to embeded Spanish easy.",
+
+    "permissions": [
+      "contextMenus"
+    ],
+
+    "background": {
+      "service_worker": "scripts/background.js"
+    },
+
     "content_scripts": [
         {
           "js": ["scripts/content.js"],
