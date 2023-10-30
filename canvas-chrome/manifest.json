@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Virtually Free",
+    "name": "Live Translate",
     "version": "1.0",
-    "description": "Tools to embeded Spanish easy.",
+    "description": "Tools to translate webpage text and audio files easily",
 
     "permissions": [
       "contextMenus"

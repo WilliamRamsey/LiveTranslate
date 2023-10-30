@@ -4,7 +4,6 @@
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-        console.log(request.data.text_in)
-        console.log(request.data.text_out)
+        console.log(request)
     }
 );
