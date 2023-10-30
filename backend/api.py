@@ -46,8 +46,9 @@ def audio_to_text():
         lang_out = None
 
     mp3 = audio_from_mp3_bytes(request.data)
-    spanish_clip = audio(sound=mp3)
-    print("made it past the tough stuff")
+    spanish_clip = audio(sound=mp3, lang="es")
+    spanish_clip.to_sr()
+    print("INTO THE MUD")
     spanish = spanish_clip.transcribe()
     juan = translator()
     english = juan.translate_text(spanish)
