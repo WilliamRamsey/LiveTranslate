@@ -1,12 +1,10 @@
 
 let contextMenuItem = {
     id: "virtually-free",
-    title: "Txt to English",
+    title: "Text to English",
     // for highlighted text
     contexts: ["selection"]
 };
-
-
 
 function textToEnglish(info, tab) {
     //console.log(info['selectionText']) 
@@ -16,9 +14,9 @@ function textToEnglish(info, tab) {
         headers: {'Content-Type': 'text/html; charset=utf-8'}
     }).then(res=>res.text()
     ).then(data=>{
-        chrome.runtime.sendMessage({
-            "text_out": data
-        })
+
+        chrome.storage.sync.set({'translated_text': data});
+
     })
 };
 

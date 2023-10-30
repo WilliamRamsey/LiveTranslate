@@ -5,7 +5,10 @@
     "description": "Tools to translate webpage text and audio files easily",
 
     "permissions": [
-      "contextMenus"
+      "contextMenus",
+      "storage",
+      "tabs",
+      "nativeMessaging"
     ],
 
     "host_permissions": [
@@ -22,11 +25,8 @@
 
     "content_scripts": [
         {
-          "js": ["scripts/content.js"],
-          "matches": [
-            "https://developer.chrome.com/docs/extensions/*",
-            "https://developer.chrome.com/docs/webstore/*"
-          ]
+          "js": ["scripts/content.js", "scripts/popup.js"],
+          "matches": ["<all_urls>"]
         }
       ]
   }
