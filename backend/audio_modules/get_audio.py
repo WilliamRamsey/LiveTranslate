@@ -1,6 +1,10 @@
 from pydub import AudioSegment
 from pydub.playback import play
+import io
 
+def audio_from_mp3_bytes(data):
+    sound = AudioSegment.from_file(io.BytesIO(data), format="mp3")
+    return sound
 
 # Gets audio from local file and returns pydub AudioSegment object
 def audio_from_local(path):

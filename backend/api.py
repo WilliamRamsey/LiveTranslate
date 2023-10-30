@@ -3,6 +3,7 @@ from flask import request
 
 from audio_modules.audio import audio
 from audio_modules.get_audio import audio_from_local
+from audio_modules.get_audio import audio_from_mp3_bytes
 from translation.translator import translator
 
 
@@ -32,12 +33,26 @@ def text_to_text():
 
     return translation
 
-
-
 # Speach to text
-@app.route('/api/translation/audio')
+@app.route('/api/translation/audio', methods=['POST', 'GET'])
 def audio_to_text():
-    pass
+    lang_in = request.args.get("lang_in")
+    lang_out = request.args.get("lang_out")
+
+    # If parameters are not specified sets them to NoneType
+    if lang_in == "none":
+        lang_in = None
+    if lang_out == "none":
+        lang_out = None
+
+    mp3 = audio_from_mp3_bytes(request.data)
+    spanish_clip = audio(sound=mp3)
+    print("made it past the tough stuff")
+    spanish = spanish_clip.transcribe()
+    juan = translator()
+    english = juan.translate_text(spanish)
+    print(english)
+    return english
 
 app.run(port=5500)
 

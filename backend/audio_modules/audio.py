@@ -20,7 +20,7 @@ class audio:
         self.sound.export(wav_buffer, format="wav")
         # Eats .wav bytes and shits out soundreconition audio file object
         self.sr_sound = sr.AudioFile(wav_buffer)
-        # Closes buffer to prevent ram blackwhole.
+        # Closes buffer to prevent ram blackhole.
         # wav_buffer.close()
     
     def transcribe(self):
