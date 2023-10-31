@@ -33,6 +33,7 @@ def text_to_text():
 
     return translation
 
+
 # Speach to text
 @app.route('/api/translation/audio', methods=['POST', 'GET'])
 def audio_to_text():
@@ -48,7 +49,6 @@ def audio_to_text():
     mp3 = audio_from_mp3_bytes(request.data)
     spanish_clip = audio(sound=mp3, lang="es")
     spanish_clip.to_sr()
-    print("INTO THE MUD")
     spanish = spanish_clip.transcribe()
     juan = translator()
     english = juan.translate_text(spanish)
