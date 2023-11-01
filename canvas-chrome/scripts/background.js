@@ -132,5 +132,6 @@ let audioContextMenuItem = {
 // Establish context menus
 chrome.contextMenus.create(textContextMenuItem);
 chrome.contextMenus.onClicked.addListener(textFromContextMenu)
+// Audio Context Menu
 chrome.contextMenus.create(audioContextMenuItem)
 chrome.contextMenus.onClicked.addListener(audioFromContextMenu)
