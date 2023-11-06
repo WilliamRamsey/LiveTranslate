@@ -55,5 +55,5 @@ def audio_to_text():
     print(english)
     return english
 
-app.run(port=5500)
+app.run(host="0.0.0.0", port=5500)
 

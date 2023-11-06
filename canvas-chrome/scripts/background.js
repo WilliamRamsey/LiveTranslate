@@ -20,7 +20,7 @@ function textToDomestic(text, langIn, langOut) {
     };
     
     // Sends post request to flask server
-    fetch(`http://127.0.0.1:5500/api/translation/text?lang_in=${langIn}&lang_out=${langOut}`, {
+    fetch(`http://192.168.0.21:5500/api/translation/text?lang_in=${langIn}&lang_out=${langOut}`, {
         method: "POST",
         body: text,
         headers: {'Content-Type': 'text/html; charset=utf-8'}
