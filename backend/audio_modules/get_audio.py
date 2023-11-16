@@ -22,10 +22,6 @@ def audio_from_local(path):
         print("Only .mp3 and .wav files are currently supported")
         raise Exception("Input valid audio file format to audio.format_audio(file_path=...)")
 
-# Gets audio from remote address and returs pydub AudioSegment object
-def audio_from_remote(url):
-    pass
-
 """
 thing = audio_from_local("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.mp3")
 thing.export("C:/Users/willi/OneDrive/Desktop/VirtuallyFree/Sp 3 M1 Audio Test 1.wav", format="wav")
