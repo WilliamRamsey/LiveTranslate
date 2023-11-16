@@ -63,8 +63,12 @@ async function audioToDomestic(audioSourceURL, langIn, langOut) {
     let canvasAudio = await fetch(audioSourceURL)
     // converts audio file to bytes
     let canvasAudioBuffer = await canvasAudio.arrayBuffer()
+    // gets file extension
+    let urlList = audioSourceURL.split(".")
+    let urlExtension = urlList.slice(-1)
+
     // sends bytes to flask server
-    let flaskResponse = await fetch(`http://127.0.0.1:5500/api/translation/audio?lang_in=${langIn}&lang_out=${langOut}`,{
+    let flaskResponse = await fetch(`http://127.0.0.1:5500/api/translation/audio?lang_in=${langIn}&lang_out=${langOut}&file_type=${urlExtension}`,{
             method: "POST",
             body: canvasAudioBuffer
         })
@@ -114,7 +118,6 @@ function audioToEnglish(info, tab) {
 */
 
 // Code for a right click (context menu)
-
 let textContextMenuItem = {
     id: "text-to-text",
     title: "Text to English",
