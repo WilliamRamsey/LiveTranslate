@@ -67,6 +67,7 @@ async function audioToDomestic(audioSourceURL, langIn, langOut) {
     let urlList = audioSourceURL.split(".")
     let urlExtension = urlList.slice(-1)
 
+    chrome.storage.sync.set({'translated_text': "Translating... This may take up to a minute for large files"});
     // sends bytes to flask server
     let flaskResponse = await fetch(`http://127.0.0.1:5500/api/translation/audio?lang_in=${langIn}&lang_out=${langOut}&file_type=${urlExtension}`,{
             method: "POST",

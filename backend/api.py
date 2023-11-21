@@ -46,9 +46,10 @@ def audio_to_text():
         lang_in = None
     if lang_out == "none":
         lang_out = None
+    if file_type != "mp4":
+        file_type = "mp3"
     
     # Creates sound object
-    print(file_type)
     mp3 = audio_from_bytes(request.data, file_type=file_type)
     spanish_clip = audio(sound=mp3, lang="es")
     spanish_clip.to_sr()
