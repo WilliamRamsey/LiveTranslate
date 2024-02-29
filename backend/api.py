@@ -42,13 +42,17 @@ def audio_to_text():
     file_type = request.args.get("file_type")
 
     # If parameters are not specified sets them to NoneType
+
     if lang_in == "none":
         lang_in = None
     if lang_out == "none":
         lang_out = None
+
     if file_type != "mp4":
         file_type = "mp3"
-    
+    if file_type == "mp4?":
+        file_type = "mp4"
+        
     # Creates sound object
     mp3 = audio_from_bytes(request.data, file_type=file_type)
     spanish_clip = audio(sound=mp3, lang="es")
@@ -57,7 +61,10 @@ def audio_to_text():
     juan = translator()
     english = juan.translate_text(spanish)
 
-    return english
+
+    print(english)
+    print(spanish)
+    return f"{english} <br> {spanish}"
 
 app.run(host="0.0.0.0", port=5500)
 
