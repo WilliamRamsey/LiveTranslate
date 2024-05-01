@@ -20,7 +20,7 @@ function textToDomestic(text, langIn, langOut) {
     };
     
     // Sends post request to flask server
-    fetch(`http://192.168.0.21:5500/api/translation/text?lang_in=${langIn}&lang_out=${langOut}`, {
+    fetch(`http://127.0.0.1:5500/api/translation/text?lang_in=${langIn}&lang_out=${langOut}`, {
         method: "POST",
         body: text,
         headers: {'Content-Type': 'text/html; charset=utf-8'}
@@ -79,44 +79,9 @@ async function audioToDomestic(audioSourceURL, langIn, langOut) {
 
 function audioFromContextMenu(info, tab) {
     let audioSourceURL = info['srcUrl'];
-    let audioResponse = audioToDomestic(audioSourceURL)
+    let audioResponse = audioToDomestic(audioSourceURL);
 };
 
-
-
-
-/*
-function textToEnglish(info, tab) {
-    //console.log(info['selectionText']) 
-    fetch("http://127.0.0.1:5500/api/translation/text?lang_in=none&lang_out=none", {
-        method: "POST",
-        body: info['selectionText'],
-        headers: {'Content-Type': 'text/html; charset=utf-8'}
-    }).then(res=>res.text()
-    ).then(data=>{
-        chrome.storage.sync.set({'translated_text': data});
-    })
-};
-*/
-
-/*
-function audioToEnglish(info, tab) {
-    let audioSourceURL = info['srcUrl'];
-
-    fetch(audioSourceURL)
-        .then(response => response.arrayBuffer())
-        .then(audioData => {
-            fetch("http://127.0.0.1:5500/api/translation/audio?lang_in=none&lang_out=none", {
-                method: "POST",
-                body: audioData
-            })
-        })
-        .then(data=> {
-            console.log(data)
-        })
-};
-
-*/
 
 // Code for a right click (context menu)
 let textContextMenuItem = {
@@ -135,8 +100,24 @@ let audioContextMenuItem = {
 
 // Establish context menus
 chrome.contextMenus.create(textContextMenuItem);
-chrome.contextMenus.onClicked.addListener(textFromContextMenu)
+chrome.contextMenus.onClicked.addListener(textFromContextMenu);
+
 // Audio Context Menu
 chrome.contextMenus.create(audioContextMenuItem)
-chrome.contextMenus.onClicked.addListener(audioFromContextMenu)
+chrome.contextMenus.onClicked.addListener(audioFromContextMenu);
 
+
+// For listening to mp4s embedded in iframes
+let callback = function(details) {
+    console.log(details);
+    if (details.initiator == "https://fultonschools.instructure.com") {
+        console.log(details.url)
+        audioToDomestic(details.url);
+    }
+};
+
+let filter = {
+    urls: ["https://pdx.cdn.nv.instructuremedia.com/*"]
+};
+
+chrome.webRequest.onBeforeRequest.addListener(callback, filter);
