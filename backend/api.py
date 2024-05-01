@@ -64,7 +64,8 @@ def audio_to_text():
 
     print(english)
     print(spanish)
-    return f"{english} <br> {spanish}"
+    return f"""{english}
+{spanish}"""
 
 app.run(host="0.0.0.0", port=5500)
 
